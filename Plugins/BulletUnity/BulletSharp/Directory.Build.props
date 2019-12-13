@@ -1,0 +1,5 @@
+﻿<Project>
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>$(SolutionDir)obj\$(Configuration)-$(TargetFramework)\BulletSharp</BaseIntermediateOutputPath>
+  </PropertyGroup>
+</Project>

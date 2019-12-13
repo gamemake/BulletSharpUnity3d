@@ -14,7 +14,18 @@
 
   <PropertyGroup>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <OutDir>$(SolutionDir)Output\$(Configuration)-$(TargetFramework)\BulletSharp</OutDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)-$(TargetFramework)\BulletSharp</OutDir>
+    <IntermediateOutputPath>$(SolutionDir)obj\$(Configuration)-$(TargetFramework)\BulletSharp</IntermediateOutputPath>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <Content Include="$(ProjectDir)..\Native\x64\libbulletc.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(ProjectDir)..\Native\Linux\64\libbulletc.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="$(ProjectDir)..\Native\OSX\**" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
 
 </Project>
