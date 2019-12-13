@@ -52,8 +52,8 @@ namespace BulletSharp
         }
     }
     */
-	public class BulletFile : bFile
-	{
+    public class BulletFile : bFile
+    {
         protected byte[] _dnaCopy;
 
         public List<byte[]> Bvhs = new List<byte[]>();
@@ -64,21 +64,21 @@ namespace BulletSharp
         public List<byte[]> MultiBodies = new List<byte[]>();
         public List<byte[]> RigidBodies = new List<byte[]>();
 
-		public BulletFile()
-			: base("", "BULLET ")
-		{
+        public BulletFile()
+            : base("", "BULLET ")
+        {
             throw new NotImplementedException();
-		}
-        
-		public BulletFile(string fileName)
-            : base(fileName, "BULLET ")
-		{
-		}
+        }
 
-		public BulletFile(byte[] memoryBuffer, int len)
+        public BulletFile(string fileName)
+            : base(fileName, "BULLET ")
+        {
+        }
+
+        public BulletFile(byte[] memoryBuffer, int len)
             : base(memoryBuffer, len, "BULLET ")
-		{
-		}
+        {
+        }
 
         public override void AddDataBlock(byte[] dataBlock)
         {
@@ -102,12 +102,12 @@ namespace BulletSharp
 
             //the parsing will convert to cpu endian
             _flags &= ~FileFlags.EndianSwap;
-            
+
             _fileBuffer[8] = BitConverter.IsLittleEndian ? (byte)'v' : (byte)'V';
         }
 
-		public override void ParseData()
-		{
+        public override void ParseData()
+        {
             //Console.WriteLine("Building datablocks");
             //Console.WriteLine("Chunk size = {0}", CHUNK_HEADER_LEN);
             //Console.WriteLine("File chunk size = {0}", ChunkUtils.GetOffset(_flags));
@@ -142,7 +142,7 @@ namespace BulletSharp
                     }
 
                     // same as (BHEAD+DATA dependency)
-			        long dataPtrHead = dataPtr + ChunkUtils.GetOffset(_flags);
+                    long dataPtrHead = dataPtr + ChunkUtils.GetOffset(_flags);
                     if (dataChunk.DnaNR >= 0)
                     {
                         byte[] id = ReadStruct(reader, dataChunk);
@@ -151,7 +151,7 @@ namespace BulletSharp
                         _libPointers.Add(dataChunk.OldPtr, id);
                         _chunks.Add(dataChunk);
 
-                        switch(dataChunk.Code)
+                        switch (dataChunk.Code)
                         {
                             case DnaID.CollisionObject:
                                 CollisionObjects.Add(id);
@@ -212,7 +212,7 @@ namespace BulletSharp
 
             reader.Dispose();
             memory.Dispose();
-		}
+        }
         /*
 		public void Bvhs
 		{
@@ -259,5 +259,5 @@ namespace BulletSharp
 			get { return btBulletFile_getTriangleInfoMaps(_native); }
 		}
         */
-	}
+    }
 }

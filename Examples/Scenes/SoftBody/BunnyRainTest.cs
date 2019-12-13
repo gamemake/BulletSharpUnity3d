@@ -10,7 +10,7 @@ namespace BulletUnity
 {
     public class BunnyRainTest : MonoBehaviour
     {
-         
+
         public Rect startAreaOfRain = new Rect(new Vector2(0f, 0f), new Vector2(10f, 10f));
         [Range(0.5f, 50f)]
         public float fromHeight = 30f;
@@ -18,7 +18,7 @@ namespace BulletUnity
         public float softBodiesPerSecond = 2.0f;
         [Range(1f, 60f)]
         public float lifetime = 10f;
-      
+
         public bool enableRain = true;
 
         public BAnyMeshSettings anyMeshSettings = new BAnyMeshSettings();
@@ -28,17 +28,17 @@ namespace BulletUnity
 
         SBSettingsPresets lastSBPresetSelect;
 
-//        const string collisionTooltip = "Collisions flags\n" +
-//"SDF_RS Rigid versus soft mask.\n" +
-//"CL_RS: SDF based rigid vs soft.\n" +
-//"SVSmask: Cluster vs convex rigid vs soft.\n" +
-//"VF_SS: Rigid versus soft mask.\n" +
-//"CL_SS:Vertex vs face soft vs soft handling.\n" +
-//"CL_SELF: Cluster vs cluster soft vs soft handling.\n" +
-//"Default: Cluster soft body self collision.";
-//        //[HideInInspector]
-//        [Tooltip(collisionTooltip)]
-//        public Collisions collisionMask = Collisions.Default;
+        //        const string collisionTooltip = "Collisions flags\n" +
+        //"SDF_RS Rigid versus soft mask.\n" +
+        //"CL_RS: SDF based rigid vs soft.\n" +
+        //"SVSmask: Cluster vs convex rigid vs soft.\n" +
+        //"VF_SS: Rigid versus soft mask.\n" +
+        //"CL_SS:Vertex vs face soft vs soft handling.\n" +
+        //"CL_SELF: Cluster vs cluster soft vs soft handling.\n" +
+        //"Default: Cluster soft body self collision.";
+        //        //[HideInInspector]
+        //        [Tooltip(collisionTooltip)]
+        //        public Collisions collisionMask = Collisions.Default;
 
         public SBSettings SoftBodySettings = new SBSettings();
 
@@ -57,7 +57,7 @@ namespace BulletUnity
             if (SBPresetSelect != lastSBPresetSelect)
                 SoftBodySettings.ResetToSoftBodyPresets(SBPresetSelect);
             lastSBPresetSelect = SBPresetSelect;
-            
+
             if (!enableRain)
                 return;
             if ((Time.time - lastBunnyTime) > (1 / softBodiesPerSecond))
@@ -71,7 +71,7 @@ namespace BulletUnity
                 GameObject go = BSoftBodyWMesh.CreateNew(pos, UnityEngine.Random.rotation, anyMeshSettings.Build(), false, SBPresetSelect);
                 BSoftBodyWMesh bSoft = go.GetComponent<BSoftBodyWMesh>();
 
-                bSoft.meshSettings. autoWeldVertices = anyMeshSettings.autoWeldVertices;
+                bSoft.meshSettings.autoWeldVertices = anyMeshSettings.autoWeldVertices;
                 bSoft.meshSettings.autoWeldThreshold = anyMeshSettings.autoWeldThreshold;
                 bSoft.meshSettings.recalculateNormals = anyMeshSettings.recalculateNormals;
                 bSoft.meshSettings.addBackFaceTriangles = anyMeshSettings.addBackFaceTriangles;
@@ -82,7 +82,7 @@ namespace BulletUnity
 
                 //bSoft.SoftBodySettings.config.Collisions = collisionMask;
 
-                bSoft._BuildCollisionObject();
+                bSoft.BuildSoftBody();
 
                 //randomize color for effect
                 go.GetComponent<MeshRenderer>().material.color =
@@ -93,9 +93,5 @@ namespace BulletUnity
                 lastBunnyTime = Time.time;
             }
         }
-
-
-
-
     }
 }

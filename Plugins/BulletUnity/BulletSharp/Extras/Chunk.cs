@@ -25,7 +25,7 @@ namespace BulletSharp
 
     [StructLayout(LayoutKind.Sequential)]
     public struct ChunkPtr8
-	{
+    {
         public ChunkPtr8(BinaryReader reader)
         {
             Code = reader.ReadInt32();
@@ -42,7 +42,7 @@ namespace BulletSharp
         public int UniqueInt2;
         public int DnaNR;
         public int NR;
-	};
+    };
 
     [StructLayout(LayoutKind.Sequential)]
     public class ChunkInd

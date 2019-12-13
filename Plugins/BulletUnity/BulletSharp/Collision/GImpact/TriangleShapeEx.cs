@@ -1,11 +1,6 @@
-using System;
-using System.Runtime.InteropServices;
-using System.Security;
-using BulletSharp.Math;
-
 namespace BulletSharp
 {
-	/*
+    /*
 	public class GimTriangleContact : IDisposable
 	{
 		internal IntPtr _native;
@@ -104,7 +99,7 @@ namespace BulletSharp
 		static extern void GIM_TRIANGLE_CONTACT_delete(IntPtr obj);
 	}
 	*/
-	/*
+    /*
 	public class PrimitiveTriangle : IDisposable
 	{
 		internal IntPtr _native;

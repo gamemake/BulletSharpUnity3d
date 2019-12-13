@@ -4,14 +4,14 @@ using System.Security;
 
 namespace BulletSharp
 {
-	public class GjkEpaPenetrationDepthSolver : ConvexPenetrationDepthSolver
-	{
-		public GjkEpaPenetrationDepthSolver()
-			: base(btGjkEpaPenetrationDepthSolver_new())
-		{
-		}
+    public class GjkEpaPenetrationDepthSolver : ConvexPenetrationDepthSolver
+    {
+        public GjkEpaPenetrationDepthSolver()
+            : base(btGjkEpaPenetrationDepthSolver_new())
+        {
+        }
 
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern IntPtr btGjkEpaPenetrationDepthSolver_new();
-	}
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern IntPtr btGjkEpaPenetrationDepthSolver_new();
+    }
 }

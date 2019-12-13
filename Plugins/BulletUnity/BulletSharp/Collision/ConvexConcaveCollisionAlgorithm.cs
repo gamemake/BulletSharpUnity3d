@@ -85,53 +85,53 @@ namespace BulletSharp
 		static extern void btConvexTriangleCallback_setTriangleCount(IntPtr obj, int value);
 	}
 */
-	public class ConvexConcaveCollisionAlgorithm : ActivatingCollisionAlgorithm
-	{
-		public class CreateFunc : CollisionAlgorithmCreateFunc
-		{
-			internal CreateFunc(IntPtr native)
-				: base(native, true)
-			{
-			}
+    public class ConvexConcaveCollisionAlgorithm : ActivatingCollisionAlgorithm
+    {
+        public class CreateFunc : CollisionAlgorithmCreateFunc
+        {
+            internal CreateFunc(IntPtr native)
+                : base(native, true)
+            {
+            }
 
-			public CreateFunc()
-				: base(btConvexConcaveCollisionAlgorithm_CreateFunc_new(), false)
-			{
-			}
+            public CreateFunc()
+                : base(btConvexConcaveCollisionAlgorithm_CreateFunc_new(), false)
+            {
+            }
 
-			[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-			static extern IntPtr btConvexConcaveCollisionAlgorithm_CreateFunc_new();
-		}
+            [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+            static extern IntPtr btConvexConcaveCollisionAlgorithm_CreateFunc_new();
+        }
 
-		public class SwappedCreateFunc : CollisionAlgorithmCreateFunc
-		{
-			internal SwappedCreateFunc(IntPtr native)
-				: base(native, true)
-			{
-			}
+        public class SwappedCreateFunc : CollisionAlgorithmCreateFunc
+        {
+            internal SwappedCreateFunc(IntPtr native)
+                : base(native, true)
+            {
+            }
 
-			public SwappedCreateFunc()
-				: base(btConvexConcaveCollisionAlgorithm_SwappedCreateFunc_new(), false)
-			{
-			}
+            public SwappedCreateFunc()
+                : base(btConvexConcaveCollisionAlgorithm_SwappedCreateFunc_new(), false)
+            {
+            }
 
-			[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-			static extern IntPtr btConvexConcaveCollisionAlgorithm_SwappedCreateFunc_new();
-		}
+            [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+            static extern IntPtr btConvexConcaveCollisionAlgorithm_SwappedCreateFunc_new();
+        }
 
-		public ConvexConcaveCollisionAlgorithm(CollisionAlgorithmConstructionInfo ci, CollisionObjectWrapper body0Wrap, CollisionObjectWrapper body1Wrap, bool isSwapped)
-			: base(btConvexConcaveCollisionAlgorithm_new(ci._native, body0Wrap._native, body1Wrap._native, isSwapped))
-		{
-		}
+        public ConvexConcaveCollisionAlgorithm(CollisionAlgorithmConstructionInfo ci, CollisionObjectWrapper body0Wrap, CollisionObjectWrapper body1Wrap, bool isSwapped)
+            : base(btConvexConcaveCollisionAlgorithm_new(ci._native, body0Wrap._native, body1Wrap._native, isSwapped))
+        {
+        }
 
-		public void ClearCache()
-		{
-			btConvexConcaveCollisionAlgorithm_clearCache(_native);
-		}
+        public void ClearCache()
+        {
+            btConvexConcaveCollisionAlgorithm_clearCache(_native);
+        }
 
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern IntPtr btConvexConcaveCollisionAlgorithm_new(IntPtr ci, IntPtr body0Wrap, IntPtr body1Wrap, bool isSwapped);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btConvexConcaveCollisionAlgorithm_clearCache(IntPtr obj);
-	}
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern IntPtr btConvexConcaveCollisionAlgorithm_new(IntPtr ci, IntPtr body0Wrap, IntPtr body1Wrap, bool isSwapped);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btConvexConcaveCollisionAlgorithm_clearCache(IntPtr obj);
+    }
 }

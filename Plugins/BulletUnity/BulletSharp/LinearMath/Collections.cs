@@ -1,14 +1,14 @@
+using BulletSharp.Math;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security;
-using BulletSharp.Math;
-using System.Diagnostics;
 
 namespace BulletSharp
 {
     internal class ListDebugView
-	{
+    {
         private System.Collections.IEnumerable _list;
 
         public ListDebugView(System.Collections.IEnumerable list)
@@ -16,9 +16,9 @@ namespace BulletSharp
             _list = list;
         }
 
-		[DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-		public System.Collections.ArrayList Items
-		{
+        [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
+        public System.Collections.ArrayList Items
+        {
             get
             {
                 var list = new System.Collections.ArrayList();
@@ -26,29 +26,29 @@ namespace BulletSharp
                     list.Add(o);
                 return list;
             }
-		}
-	};
+        }
+    };
 
     internal class Vector3ListDebugView
-	{
-		private IList<Vector3> _list;
+    {
+        private IList<Vector3> _list;
 
-		public Vector3ListDebugView(IList<Vector3> list)
+        public Vector3ListDebugView(IList<Vector3> list)
         {
             _list = list;
         }
 
-		[DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
+        [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
         public Vector3[] Items
-		{
-			get
+        {
+            get
             {
                 Vector3[] arr = new Vector3[_list.Count];
-	            _list.CopyTo(arr, 0);
-	            return arr;
+                _list.CopyTo(arr, 0);
+                return arr;
             }
-		}
-	};
+        }
+    };
 
     public class CompoundShapeChildArrayEnumerator : IEnumerator<CompoundShapeChild>
     {
@@ -208,7 +208,7 @@ namespace BulletSharp
             : base(compoundShape, 0)
         {
         }
-        
+
         public void Add(CompoundShapeChild item)
         {
             throw new NotSupportedException();

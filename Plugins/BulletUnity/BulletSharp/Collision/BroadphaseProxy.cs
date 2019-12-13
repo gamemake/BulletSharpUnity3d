@@ -1,12 +1,12 @@
+using BulletSharp.Math;
 using System;
 using System.Runtime.InteropServices;
 using System.Security;
-using BulletSharp.Math;
 
 namespace BulletSharp
 {
-	public enum BroadphaseNativeType
-	{
+    public enum BroadphaseNativeType
+    {
         BoxShape,
         TriangleShape,
         TetrahedralShape,
@@ -44,33 +44,33 @@ namespace BulletSharp
         HFFLUID_BUOYANT_CONVEX_SHAPE_PROXYTYPE,
         INVALID_SHAPE_PROXYTYPE,
         MAX_BROADPHASE_COLLISION_TYPES
-	}
+    }
 
-	[Flags]
-	public enum CollisionFilterGroups
-	{
+    [Flags]
+    public enum CollisionFilterGroups
+    {
         Everything = -1,
-		DefaultFilter = 1,
-		StaticFilter = 2,
-		KinematicFilter = 4,
-		DebrisFilter = 8,
-		SensorTrigger = 16,
-		CharacterFilter = 32,
+        DefaultFilter = 1,
+        StaticFilter = 2,
+        KinematicFilter = 4,
+        DebrisFilter = 8,
+        SensorTrigger = 16,
+        CharacterFilter = 32,
         BallFilter = 64,
         BallCollisionFilter = 128,
         ItemBoxCollisionFilter = 256,
         ObstacleCollisionFilter = 512,
     }
 
-	public class BroadphaseProxy
-	{
-		internal IntPtr _native;
+    public class BroadphaseProxy
+    {
+        internal IntPtr _native;
         private Object _clientObject;
 
-		internal BroadphaseProxy(IntPtr native)
-		{
-			_native = native;
-		}
+        internal BroadphaseProxy(IntPtr native)
+        {
+            _native = native;
+        }
 
         internal static BroadphaseProxy GetManaged(IntPtr native)
         {
@@ -80,7 +80,8 @@ namespace BulletSharp
             }
 
             IntPtr clientObjectPtr = btBroadphaseProxy_getClientObject(native);
-            if (clientObjectPtr != IntPtr.Zero) {
+            if (clientObjectPtr != IntPtr.Zero)
+            {
                 CollisionObject clientObject = CollisionObject.GetManaged(clientObjectPtr);
                 return clientObject.BroadphaseHandle;
             }
@@ -90,69 +91,69 @@ namespace BulletSharp
         }
 
         public static bool IsCompound(BroadphaseNativeType proxyType)
-		{
-			return btBroadphaseProxy_isCompound(proxyType);
-		}
+        {
+            return btBroadphaseProxy_isCompound(proxyType);
+        }
 
         public static bool IsConcave(BroadphaseNativeType proxyType)
-		{
-			return btBroadphaseProxy_isConcave(proxyType);
-		}
+        {
+            return btBroadphaseProxy_isConcave(proxyType);
+        }
 
         public static bool IsConvex(BroadphaseNativeType proxyType)
-		{
-			return btBroadphaseProxy_isConvex(proxyType);
-		}
+        {
+            return btBroadphaseProxy_isConvex(proxyType);
+        }
 
         public static bool IsConvex2D(BroadphaseNativeType proxyType)
-		{
-			return btBroadphaseProxy_isConvex2d(proxyType);
-		}
+        {
+            return btBroadphaseProxy_isConvex2d(proxyType);
+        }
 
         public static bool IsInfinite(BroadphaseNativeType proxyType)
-		{
-			return btBroadphaseProxy_isInfinite(proxyType);
-		}
+        {
+            return btBroadphaseProxy_isInfinite(proxyType);
+        }
 
         public static bool IsNonMoving(BroadphaseNativeType proxyType)
-		{
-			return btBroadphaseProxy_isNonMoving(proxyType);
-		}
+        {
+            return btBroadphaseProxy_isNonMoving(proxyType);
+        }
 
         public static bool IsPolyhedral(BroadphaseNativeType proxyType)
-		{
-			return btBroadphaseProxy_isPolyhedral(proxyType);
-		}
+        {
+            return btBroadphaseProxy_isPolyhedral(proxyType);
+        }
 
         public static bool IsSoftBody(BroadphaseNativeType proxyType)
-		{
-			return btBroadphaseProxy_isSoftBody(proxyType);
-		}
+        {
+            return btBroadphaseProxy_isSoftBody(proxyType);
+        }
 
-		public Vector3 AabbMax
-		{
-			get
-			{
-				Vector3 value;
-				btBroadphaseProxy_getAabbMax(_native, out value);
-				return value;
-			}
-			set { btBroadphaseProxy_setAabbMax(_native, ref value); }
-		}
+        public Vector3 AabbMax
+        {
+            get
+            {
+                Vector3 value;
+                btBroadphaseProxy_getAabbMax(_native, out value);
+                return value;
+            }
+            set { btBroadphaseProxy_setAabbMax(_native, ref value); }
+        }
 
-		public Vector3 AabbMin
-		{
-			get
-			{
-				Vector3 value;
-				btBroadphaseProxy_getAabbMin(_native, out value);
-				return value;
-			}
-			set { btBroadphaseProxy_setAabbMin(_native, ref value); }
-		}
+        public Vector3 AabbMin
+        {
+            get
+            {
+                Vector3 value;
+                btBroadphaseProxy_getAabbMin(_native, out value);
+                return value;
+            }
+            set { btBroadphaseProxy_setAabbMin(_native, ref value); }
+        }
 
         public Object ClientObject
-		{
+        {
             get
             {
                 IntPtr clientObjectPtr = btBroadphaseProxy_getClientObject(_native);
@@ -175,139 +176,139 @@ namespace BulletSharp
                 }
                 _clientObject = value;
             }
-		}
+        }
 
-		public short CollisionFilterGroup
-		{
-			get { return btBroadphaseProxy_getCollisionFilterGroup(_native); }
-			set { btBroadphaseProxy_setCollisionFilterGroup(_native, value); }
-		}
+        public short CollisionFilterGroup
+        {
+            get { return btBroadphaseProxy_getCollisionFilterGroup(_native); }
+            set { btBroadphaseProxy_setCollisionFilterGroup(_native, value); }
+        }
 
-		public short CollisionFilterMask
-		{
-			get { return btBroadphaseProxy_getCollisionFilterMask(_native); }
-			set { btBroadphaseProxy_setCollisionFilterMask(_native, value); }
-		}
+        public short CollisionFilterMask
+        {
+            get { return btBroadphaseProxy_getCollisionFilterMask(_native); }
+            set { btBroadphaseProxy_setCollisionFilterMask(_native, value); }
+        }
 
-		public IntPtr MultiSapParentProxy
-		{
-			get { return btBroadphaseProxy_getMultiSapParentProxy(_native); }
-			set { btBroadphaseProxy_setMultiSapParentProxy(_native, value); }
-		}
+        public IntPtr MultiSapParentProxy
+        {
+            get { return btBroadphaseProxy_getMultiSapParentProxy(_native); }
+            set { btBroadphaseProxy_setMultiSapParentProxy(_native, value); }
+        }
 
-		public int Uid
-		{
-			get { return btBroadphaseProxy_getUid(_native); }
-		}
+        public int Uid
+        {
+            get { return btBroadphaseProxy_getUid(_native); }
+        }
 
-		public int UniqueId
-		{
-			get { return btBroadphaseProxy_getUniqueId(_native); }
-			set { btBroadphaseProxy_setUniqueId(_native, value); }
-		}
+        public int UniqueId
+        {
+            get { return btBroadphaseProxy_getUniqueId(_native); }
+            set { btBroadphaseProxy_setUniqueId(_native, value); }
+        }
 
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btBroadphaseProxy_getAabbMax(IntPtr obj, [Out] out Vector3 value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btBroadphaseProxy_getAabbMin(IntPtr obj, [Out] out Vector3 value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern IntPtr btBroadphaseProxy_getClientObject(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern short btBroadphaseProxy_getCollisionFilterGroup(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern short btBroadphaseProxy_getCollisionFilterMask(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern IntPtr btBroadphaseProxy_getMultiSapParentProxy(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern int btBroadphaseProxy_getUid(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern int btBroadphaseProxy_getUniqueId(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		[return: MarshalAs(UnmanagedType.I1)]
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btBroadphaseProxy_getAabbMax(IntPtr obj, [Out] out Vector3 value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btBroadphaseProxy_getAabbMin(IntPtr obj, [Out] out Vector3 value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern IntPtr btBroadphaseProxy_getClientObject(IntPtr obj);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern short btBroadphaseProxy_getCollisionFilterGroup(IntPtr obj);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern short btBroadphaseProxy_getCollisionFilterMask(IntPtr obj);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern IntPtr btBroadphaseProxy_getMultiSapParentProxy(IntPtr obj);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern int btBroadphaseProxy_getUid(IntPtr obj);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern int btBroadphaseProxy_getUniqueId(IntPtr obj);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        [return: MarshalAs(UnmanagedType.I1)]
         static extern bool btBroadphaseProxy_isCompound(BroadphaseNativeType proxyType);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		[return: MarshalAs(UnmanagedType.I1)]
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        [return: MarshalAs(UnmanagedType.I1)]
         static extern bool btBroadphaseProxy_isConcave(BroadphaseNativeType proxyType);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		[return: MarshalAs(UnmanagedType.I1)]
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        [return: MarshalAs(UnmanagedType.I1)]
         static extern bool btBroadphaseProxy_isConvex(BroadphaseNativeType proxyType);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		[return: MarshalAs(UnmanagedType.I1)]
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        [return: MarshalAs(UnmanagedType.I1)]
         static extern bool btBroadphaseProxy_isConvex2d(BroadphaseNativeType proxyType);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		[return: MarshalAs(UnmanagedType.I1)]
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        [return: MarshalAs(UnmanagedType.I1)]
         static extern bool btBroadphaseProxy_isInfinite(BroadphaseNativeType proxyType);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		[return: MarshalAs(UnmanagedType.I1)]
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        [return: MarshalAs(UnmanagedType.I1)]
         static extern bool btBroadphaseProxy_isNonMoving(BroadphaseNativeType proxyType);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		[return: MarshalAs(UnmanagedType.I1)]
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        [return: MarshalAs(UnmanagedType.I1)]
         static extern bool btBroadphaseProxy_isPolyhedral(BroadphaseNativeType proxyType);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		[return: MarshalAs(UnmanagedType.I1)]
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        [return: MarshalAs(UnmanagedType.I1)]
         static extern bool btBroadphaseProxy_isSoftBody(BroadphaseNativeType proxyType);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btBroadphaseProxy_setAabbMax(IntPtr obj, [In] ref Vector3 value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btBroadphaseProxy_setAabbMin(IntPtr obj, [In] ref Vector3 value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btBroadphaseProxy_setClientObject(IntPtr obj, IntPtr value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btBroadphaseProxy_setCollisionFilterGroup(IntPtr obj, short value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btBroadphaseProxy_setCollisionFilterMask(IntPtr obj, short value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btBroadphaseProxy_setMultiSapParentProxy(IntPtr obj, IntPtr value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btBroadphaseProxy_setUniqueId(IntPtr obj, int value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btBroadphaseProxy_delete(IntPtr obj);
-	}
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btBroadphaseProxy_setAabbMax(IntPtr obj, [In] ref Vector3 value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btBroadphaseProxy_setAabbMin(IntPtr obj, [In] ref Vector3 value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btBroadphaseProxy_setClientObject(IntPtr obj, IntPtr value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btBroadphaseProxy_setCollisionFilterGroup(IntPtr obj, short value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btBroadphaseProxy_setCollisionFilterMask(IntPtr obj, short value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btBroadphaseProxy_setMultiSapParentProxy(IntPtr obj, IntPtr value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btBroadphaseProxy_setUniqueId(IntPtr obj, int value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btBroadphaseProxy_delete(IntPtr obj);
+    }
 
-	public class BroadphasePair
-	{
-		internal IntPtr _native;
+    public class BroadphasePair
+    {
+        internal IntPtr _native;
 
-		internal BroadphasePair(IntPtr native)
-		{
-			_native = native;
-		}
+        internal BroadphasePair(IntPtr native)
+        {
+            _native = native;
+        }
 
-		public CollisionAlgorithm Algorithm
-		{
+        public CollisionAlgorithm Algorithm
+        {
             get
             {
                 IntPtr valuePtr = btBroadphasePair_getAlgorithm(_native);
                 return (valuePtr == IntPtr.Zero) ? null : new CollisionAlgorithm(valuePtr, true);
             }
             set { btBroadphasePair_setAlgorithm(_native, (value._native == IntPtr.Zero) ? IntPtr.Zero : value._native); }
-		}
+        }
 
         public BroadphaseProxy Proxy0
-		{
-			get { return BroadphaseProxy.GetManaged(btBroadphasePair_getPProxy0(_native)); }
-			set { btBroadphasePair_setPProxy0(_native, value._native); }
-		}
+        {
+            get { return BroadphaseProxy.GetManaged(btBroadphasePair_getPProxy0(_native)); }
+            set { btBroadphasePair_setPProxy0(_native, value._native); }
+        }
 
         public BroadphaseProxy Proxy1
-		{
-			get { return BroadphaseProxy.GetManaged(btBroadphasePair_getPProxy1(_native)); }
-			set { btBroadphasePair_setPProxy1(_native, value._native); }
-		}
+        {
+            get { return BroadphaseProxy.GetManaged(btBroadphasePair_getPProxy1(_native)); }
+            set { btBroadphasePair_setPProxy1(_native, value._native); }
+        }
 
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern IntPtr btBroadphasePair_getAlgorithm(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern IntPtr btBroadphasePair_getPProxy0(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern IntPtr btBroadphasePair_getPProxy1(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btBroadphasePair_setAlgorithm(IntPtr obj, IntPtr value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btBroadphasePair_setPProxy0(IntPtr obj, IntPtr value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btBroadphasePair_setPProxy1(IntPtr obj, IntPtr value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btBroadphasePair_delete(IntPtr obj);
-	}
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern IntPtr btBroadphasePair_getAlgorithm(IntPtr obj);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern IntPtr btBroadphasePair_getPProxy0(IntPtr obj);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern IntPtr btBroadphasePair_getPProxy1(IntPtr obj);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btBroadphasePair_setAlgorithm(IntPtr obj, IntPtr value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btBroadphasePair_setPProxy0(IntPtr obj, IntPtr value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btBroadphasePair_setPProxy1(IntPtr obj, IntPtr value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btBroadphasePair_delete(IntPtr obj);
+    }
 }

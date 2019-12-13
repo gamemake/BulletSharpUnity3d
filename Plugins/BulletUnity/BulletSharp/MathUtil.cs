@@ -22,7 +22,6 @@
 // */
 
 using BulletSharp.Math;
-using System;
 using System.Diagnostics;
 
 namespace BulletSharp

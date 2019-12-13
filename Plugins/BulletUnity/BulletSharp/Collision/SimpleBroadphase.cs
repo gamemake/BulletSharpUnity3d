@@ -1,17 +1,14 @@
 using System;
-using System.Runtime.InteropServices;
-using System.Security;
-using BulletSharp.Math;
 
 namespace BulletSharp
 {
-	public class SimpleBroadphaseProxy : BroadphaseProxy
-	{
-		internal SimpleBroadphaseProxy(IntPtr native)
-			: base(native)
-		{
-		}
-		/*
+    public class SimpleBroadphaseProxy : BroadphaseProxy
+    {
+        internal SimpleBroadphaseProxy(IntPtr native)
+            : base(native)
+        {
+        }
+        /*
 		public int NextFree
 		{
 			get { return btSimpleBroadphaseProxy_GetNextFree(_native); }
@@ -23,8 +20,8 @@ namespace BulletSharp
 		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
 		static extern void btSimpleBroadphaseProxy_SetNextFree(IntPtr obj, int next);
 		*/
-	}
-	/*
+    }
+    /*
 	public class SimpleBroadphase : BroadphaseInterface
 	{
 		public SimpleBroadphase()

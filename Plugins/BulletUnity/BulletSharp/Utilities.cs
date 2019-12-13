@@ -20,10 +20,6 @@
 * THE SOFTWARE.
 */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace BulletSharp
 {
     static class Utilities

@@ -75,7 +75,7 @@ namespace BulletUnity
                     bRope.SoftBodySettings = softBodySettings;
 
                     //now build it
-                    bRope._BuildCollisionObject();
+                    bRope.BuildSoftBody();
 
                 }
             }

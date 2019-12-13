@@ -1,5 +1,5 @@
-using System;
 using BulletSharp.Math;
+using System;
 
 namespace BulletSharp
 {
@@ -9,9 +9,9 @@ namespace BulletSharp
         public Vector3 HitNormalInWorld { get; set; }
         public Vector3 HitPointInWorld { get; set; }
     }
-    
+
     public interface IVehicleRaycaster
-	{
+    {
         Object CastRay(ref Vector3 from, ref Vector3 to, VehicleRaycasterResult result);
-	}
+    }
 }

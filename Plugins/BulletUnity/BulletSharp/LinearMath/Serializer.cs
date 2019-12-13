@@ -8,100 +8,100 @@ using System.Text;
 
 namespace BulletSharp
 {
-	public class Chunk
-	{
-		internal IntPtr _native;
+    public class Chunk
+    {
+        internal IntPtr _native;
         private bool _preventDelete;
 
-		internal Chunk(IntPtr native, bool preventDelete)
-		{
-			_native = native;
+        internal Chunk(IntPtr native, bool preventDelete)
+        {
+            _native = native;
             _preventDelete = preventDelete;
-		}
+        }
 
-		public Chunk()
-		{
-			_native = btChunk_new();
-		}
+        public Chunk()
+        {
+            _native = btChunk_new();
+        }
 
-		public int ChunkCode
-		{
-			get { return btChunk_getChunkCode(_native); }
-			set { btChunk_setChunkCode(_native, value); }
-		}
+        public int ChunkCode
+        {
+            get { return btChunk_getChunkCode(_native); }
+            set { btChunk_setChunkCode(_native, value); }
+        }
 
-		public int DnaNr
-		{
-			get { return btChunk_getDna_nr(_native); }
-			set { btChunk_setDna_nr(_native, value); }
-		}
+        public int DnaNr
+        {
+            get { return btChunk_getDna_nr(_native); }
+            set { btChunk_setDna_nr(_native, value); }
+        }
 
-		public int Length
-		{
-			get { return btChunk_getLength(_native); }
-			set { btChunk_setLength(_native, value); }
-		}
+        public int Length
+        {
+            get { return btChunk_getLength(_native); }
+            set { btChunk_setLength(_native, value); }
+        }
 
-		public int Number
-		{
-			get { return btChunk_getNumber(_native); }
-			set { btChunk_setNumber(_native, value); }
-		}
+        public int Number
+        {
+            get { return btChunk_getNumber(_native); }
+            set { btChunk_setNumber(_native, value); }
+        }
 
-		public IntPtr OldPtr
-		{
-			get { return btChunk_getOldPtr(_native); }
-			set { btChunk_setOldPtr(_native, value); }
-		}
+        public IntPtr OldPtr
+        {
+            get { return btChunk_getOldPtr(_native); }
+            set { btChunk_setOldPtr(_native, value); }
+        }
 
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-		protected virtual void Dispose(bool disposing)
-		{
-			if (_native != IntPtr.Zero)
-			{
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_native != IntPtr.Zero)
+            {
                 if (!_preventDelete)
                 {
                     btChunk_delete(_native);
                 }
-				_native = IntPtr.Zero;
-			}
-		}
+                _native = IntPtr.Zero;
+            }
+        }
 
-		~Chunk()
-		{
-			Dispose(false);
-		}
+        ~Chunk()
+        {
+            Dispose(false);
+        }
 
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern IntPtr btChunk_new();
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern int btChunk_getChunkCode(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern int btChunk_getDna_nr(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern int btChunk_getLength(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern int btChunk_getNumber(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern IntPtr btChunk_getOldPtr(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btChunk_setChunkCode(IntPtr obj, int value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btChunk_setDna_nr(IntPtr obj, int value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btChunk_setLength(IntPtr obj, int value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btChunk_setNumber(IntPtr obj, int value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btChunk_setOldPtr(IntPtr obj, IntPtr value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btChunk_delete(IntPtr obj);
-	}
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern IntPtr btChunk_new();
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern int btChunk_getChunkCode(IntPtr obj);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern int btChunk_getDna_nr(IntPtr obj);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern int btChunk_getLength(IntPtr obj);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern int btChunk_getNumber(IntPtr obj);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern IntPtr btChunk_getOldPtr(IntPtr obj);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btChunk_setChunkCode(IntPtr obj, int value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btChunk_setDna_nr(IntPtr obj, int value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btChunk_setLength(IntPtr obj, int value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btChunk_setNumber(IntPtr obj, int value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btChunk_setOldPtr(IntPtr obj, IntPtr value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btChunk_delete(IntPtr obj);
+    }
 
     [Flags]
     public enum SerializationFlags
@@ -111,8 +111,8 @@ namespace BulletSharp
         NoDuplicateAssert = 4
     }
 
-	public abstract class Serializer : IDisposable
-	{
+    public abstract class Serializer : IDisposable
+    {
         [UnmanagedFunctionPointer(Native.Conv), SuppressUnmanagedCodeSecurity]
         delegate IntPtr AllocateUnmanagedDelegate(uint size, int numElements);
         [UnmanagedFunctionPointer(Native.Conv), SuppressUnmanagedCodeSecurity]
@@ -163,10 +163,10 @@ namespace BulletSharp
         static byte[] dna;
         static byte[] dna64;
 
-		internal IntPtr _native;
+        internal IntPtr _native;
 
-		public Serializer()
-		{
+        public Serializer()
+        {
             _allocate = new AllocateUnmanagedDelegate(AllocateUnmanaged);
             _finalizeChunk = new FinalizeChunkUnmanagedDelegate(FinalizeChunk);
             _findNameForPointer = new FindNameForPointerUnmanagedDelegate(FindNameForPointer);
@@ -199,7 +199,7 @@ namespace BulletSharp
                 Marshal.GetFunctionPointerForDelegate(_serializeName),
                 Marshal.GetFunctionPointerForDelegate(_setSerializationFlags),
                 Marshal.GetFunctionPointerForDelegate(_startSerialization));
-		}
+        }
 
         private IntPtr AllocateUnmanaged(uint size, int numElements)
         {
@@ -240,37 +240,37 @@ namespace BulletSharp
         public abstract void FinalizeChunk(Chunk chunkPtr, string structType, DnaID chunkCode, IntPtr oldPtr);
         public abstract IntPtr FindNameForPointer(IntPtr ptr);
         public abstract IntPtr FindPointer(IntPtr oldPtr);
-		public abstract void FinishSerialization();
+        public abstract void FinishSerialization();
         public abstract IntPtr GetChunk(int chunkIndex);
         public abstract IntPtr GetUniquePointer(IntPtr oldPtr);
         public abstract int GetNumChunks();
         public abstract void RegisterNameForObject(Object obj, string name);
         public abstract void SerializeName(IntPtr ptr);
         public abstract void StartSerialization();
-        
+
         public abstract IntPtr BufferPointer { get; }
         public abstract int CurrentBufferSize { get; }
         public abstract SerializationFlags SerializationFlags { get; set; }
 
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-		protected virtual void Dispose(bool disposing)
-		{
-			if (_native != IntPtr.Zero)
-			{
-				btSerializer_delete(_native);
-				_native = IntPtr.Zero;
-			}
-		}
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_native != IntPtr.Zero)
+            {
+                btSerializer_delete(_native);
+                _native = IntPtr.Zero;
+            }
+        }
 
-		~Serializer()
-		{
-			Dispose(false);
-		}
+        ~Serializer()
+        {
+            Dispose(false);
+        }
 
         public static byte[] GetBulletDna()
         {
@@ -301,8 +301,8 @@ namespace BulletSharp
             IntPtr getNumChunksCallback, IntPtr getSerializationFlagsCallback, IntPtr getUniquePointerCallback,
             IntPtr registerNameForPointerCallback, IntPtr serializeNameCallback, IntPtr setSerializationFlagsCallback,
             IntPtr startSerializationCallback);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btSerializer_delete(IntPtr obj);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btSerializer_delete(IntPtr obj);
 
         [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
         static extern IntPtr getBulletDNAstr();
@@ -312,10 +312,10 @@ namespace BulletSharp
         static extern IntPtr getBulletDNAstr64();
         [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
         static extern int getBulletDNAlen64();
-	}
+    }
 
-	public class DefaultSerializer : Serializer
-	{
+    public class DefaultSerializer : Serializer
+    {
         private IntPtr _buffer;
         private int _currentSize;
         private IntPtr _uniqueIdGenerator;
@@ -335,20 +335,20 @@ namespace BulletSharp
         private Dna.TypeDecl[] _types;
         private Dictionary<string, Dna.StructDecl> _structReverse;
 
-		public DefaultSerializer(int totalSize)
-		{
+        public DefaultSerializer(int totalSize)
+        {
             _currentSize = 0;
             _totalSize = totalSize;
 
             _buffer = (_totalSize != 0) ? Marshal.AllocHGlobal(_totalSize) : IntPtr.Zero;
 
             InitDna((IntPtr.Size == 8) ? GetBulletDna64() : GetBulletDna());
-		}
+        }
 
-		public DefaultSerializer()
+        public DefaultSerializer()
             : this(0)
-		{
-		}
+        {
+        }
 
         protected override void Dispose(bool disposing)
         {
@@ -388,7 +388,7 @@ namespace BulletSharp
         {
             int length = (int)size * numElements;
             IntPtr ptr = InternalAlloc(length + ChunkInd.Size);
-            IntPtr data = ptr.Add( ChunkInd.Size );
+            IntPtr data = ptr.Add(ChunkInd.Size);
             Chunk chunk = new Chunk(ptr, true)
             {
                 ChunkCode = 0,
@@ -430,45 +430,45 @@ namespace BulletSharp
         }
 
         public override void FinishSerialization()
-		{
+        {
             WriteDna();
 
-			//if we didn't pre-allocate a buffer, we need to create a contiguous buffer now
-			int mysize = 0;
-			if (_totalSize == 0)
-			{
-				if (_buffer != IntPtr.Zero)
+            //if we didn't pre-allocate a buffer, we need to create a contiguous buffer now
+            int mysize = 0;
+            if (_totalSize == 0)
+            {
+                if (_buffer != IntPtr.Zero)
                 {
                     Marshal.FreeHGlobal(_buffer);
                 }
 
-				_currentSize += 12; // header
-				_buffer = Marshal.AllocHGlobal(_currentSize);
+                _currentSize += 12; // header
+                _buffer = Marshal.AllocHGlobal(_currentSize);
 
-				IntPtr currentPtr = _buffer;
+                IntPtr currentPtr = _buffer;
                 WriteHeader(_buffer);
-				currentPtr = currentPtr.Add(12);
+                currentPtr = currentPtr.Add(12);
                 mysize += 12;
-				for (int i=0;i<	_chunkPtrs.Count;i++)
-				{
-					int curLength = ChunkInd.Size + _chunkPtrs[i].Length;
+                for (int i = 0; i < _chunkPtrs.Count; i++)
+                {
+                    int curLength = ChunkInd.Size + _chunkPtrs[i].Length;
                     Marshal.StructureToPtr(_chunkPtrs[i], currentPtr, false);
-					currentPtr=currentPtr.Add(curLength);
-					mysize+=curLength;
-				}
-			}
+                    currentPtr = currentPtr.Add(curLength);
+                    mysize += curLength;
+                }
+            }
 
             foreach (IntPtr ptr in _nameMap.Values)
             {
                 Marshal.FreeHGlobal(ptr);
             }
 
-			_structReverse.Clear();
-			_chunkP.Clear();
-			_nameMap.Clear();
-			_uniquePointers.Clear();
-			_chunkPtrs.Clear();
-		}
+            _structReverse.Clear();
+            _chunkP.Clear();
+            _nameMap.Clear();
+            _uniquePointers.Clear();
+            _chunkPtrs.Clear();
+        }
 
         public override IntPtr GetChunk(int chunkIndex)
         {
@@ -497,7 +497,7 @@ namespace BulletSharp
             {
                 return uniquePtr;
             }
-            
+
             _uniqueIdGenerator = _uniqueIdGenerator.Add(1);
             _uniquePointers.Add(oldPtr, _uniqueIdGenerator);
 
@@ -625,7 +625,7 @@ namespace BulletSharp
         }
 
         public override void RegisterNameForObject(Object obj, string name)
-		{
+        {
             IntPtr ptr;
             if (obj is CollisionObject)
             {
@@ -645,7 +645,7 @@ namespace BulletSharp
             }
             IntPtr namePtr = Marshal.StringToHGlobalAnsi(name);
             _nameMap.Add(ptr, namePtr);
-		}
+        }
 
         public override void SerializeName(IntPtr namePtr)
         {
@@ -682,14 +682,14 @@ namespace BulletSharp
         }
 
         public override void StartSerialization()
-		{
+        {
             _uniqueIdGenerator = new IntPtr(1);
-			if (_totalSize != 0)
-			{
-				IntPtr buffer = InternalAlloc(12);
-				WriteHeader(buffer);
-			}
-		}
+            if (_totalSize != 0)
+            {
+                IntPtr buffer = InternalAlloc(12);
+                WriteHeader(buffer);
+            }
+        }
 
         public void WriteDna()
         {
@@ -700,8 +700,8 @@ namespace BulletSharp
             FinalizeChunk(dnaChunk, "DNA1", DnaID.Dna, _dna);
         }
 
-		public unsafe void WriteHeader(IntPtr buffer)
-		{
+        public unsafe void WriteHeader(IntPtr buffer)
+        {
             byte[] header = new byte[] {
                 (byte)'B', (byte)'U', (byte)'L', (byte)'L', (byte)'E', (byte)'T',
                 (byte)'f', (byte)'_',
@@ -715,7 +715,7 @@ namespace BulletSharp
                 header[8] = (byte)'V';
             }
             Marshal.Copy(header, 0, buffer, header.Length);
-		}
+        }
 
         public override IntPtr BufferPointer
         {

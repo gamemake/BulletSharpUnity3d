@@ -21,10 +21,10 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-using System;
-using System.Security;
-using System.Runtime.InteropServices;
 using BulletSharp.Math;
+using System;
+using System.Runtime.InteropServices;
+using System.Security;
 
 namespace BulletSharp
 {
@@ -134,7 +134,7 @@ namespace BulletSharp
             }
 
             //if (ObjectTable.Contains(debugDraw))
-		    //    return ObjectTable.GetUnmanagedObject(debugDraw);
+            //    return ObjectTable.GetUnmanagedObject(debugDraw);
 
             throw new NotImplementedException();
             //GCHandle handle = GCHandle.Alloc(debugDrawer);
@@ -151,12 +151,12 @@ namespace BulletSharp
             }
 
             //if (ObjectTable.Contains(debugDrawer)
-		    //    return ObjectTable.GetObject<IDebugDraw^>(debugDrawer);
+            //    return ObjectTable.GetObject<IDebugDraw^>(debugDrawer);
 
             IntPtr handle = btIDebugDrawWrapper_getGCHandle(debugDrawer);
             return GCHandle.FromIntPtr(handle).Target as IDebugDraw;
         }
-        
+
         void SimpleCallbackUnmanaged(int x)
         {
             throw new NotImplementedException();

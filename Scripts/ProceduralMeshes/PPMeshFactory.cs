@@ -103,7 +103,7 @@ namespace BulletUnity
 
         public override Mesh Build()
         {
-            Mesh mesh = ProceduralPrimitives.CreateMeshCapsule(height, radius, nbSides, (int) upAxis);
+            Mesh mesh = ProceduralPrimitives.CreateMeshCapsule(height, radius, nbSides, (int)upAxis);
             return mesh;
         }
 
@@ -231,7 +231,8 @@ namespace BulletUnity
                     mesh = ProceduralPrimitives.CreateMeshPyramid(settings.height, settings.radius);
                     break;
                 case PrimitiveMeshOptions.Bunny:
-                    mesh = ProceduralPrimitives.BuildMeshFromData(SoftDemo.BunnyMesh.Vertices, SoftDemo.BunnyMesh.Indices);
+                    mesh = ProceduralPrimitives.CreateMeshPyramid(settings.height, settings.radius);
+                    // mesh = ProceduralPrimitives.BuildMeshFromData(SoftDemo.BunnyMesh.Vertices, SoftDemo.BunnyMesh.Indices);
                     break;
                 case PrimitiveMeshOptions.Plane:
                     mesh = ProceduralPrimitives.CreateMeshPlane(settings.length, settings.width, settings.resX, settings.resZ);

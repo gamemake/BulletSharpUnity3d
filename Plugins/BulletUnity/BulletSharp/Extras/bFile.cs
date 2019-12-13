@@ -42,8 +42,8 @@ namespace BulletSharp
         }
     }
 
-	public abstract class bFile
-	{
+    public abstract class bFile
+    {
         const int SizeOfBlenderHeader = 12;
         const int MaxArrayLength = 512;
         const int MaxStringLength = 1024;
@@ -54,7 +54,7 @@ namespace BulletSharp
         protected Dna _fileDna;
         protected FileFlags _flags;
         protected string _headerString;
-        protected Dictionary<long, byte[]> _libPointers = new Dictionary<long,byte[]>();
+        protected Dictionary<long, byte[]> _libPointers = new Dictionary<long, byte[]>();
         protected Dna _memoryDna;
         protected int _version;
 
@@ -88,15 +88,15 @@ namespace BulletSharp
 			bFile_dumpChunks(_native, dna._native);
 		}
         */
-		public byte[] FindLibPointer(long ptr)
-		{
+        public byte[] FindLibPointer(long ptr)
+        {
             byte[] data;
             if (LibPointers.TryGetValue(ptr, out data))
             {
                 return data;
             }
             return null;
-		}
+        }
 
         private void GetElement(BinaryReader reader, int ArrayLen, Dna.TypeDecl type, double[] data)
         {
@@ -210,7 +210,7 @@ namespace BulletSharp
         }
 
         // buffer offset util
-		protected int GetNextBlock(out ChunkInd dataChunk, BinaryReader reader, FileFlags flags)
+        protected int GetNextBlock(out ChunkInd dataChunk, BinaryReader reader, FileFlags flags)
         {
             bool swap = (flags & FileFlags.EndianSwap) != 0;
             bool varies = (flags & FileFlags.BitsVaries) != 0;
@@ -263,12 +263,12 @@ namespace BulletSharp
             return dataChunk.Length + ChunkUtils.GetOffset(flags);
         }
 
-		public bool OK
-		{
+        public bool OK
+        {
             get { return (_flags & FileFlags.OK) != 0; }
-		}
+        }
 
-		public abstract void Parse(FileVerboseMode verboseMode);
+        public abstract void Parse(FileVerboseMode verboseMode);
         public abstract void ParseData();
 
         protected void ParseHeader()
@@ -287,12 +287,12 @@ namespace BulletSharp
             int.TryParse(header.Substring(9), out _version);
 
             // swap ptr sizes...
-	        if (header[7] == '-')
-	        {
-		        _flags |= FileFlags.File64;
-		        if (IntPtr.Size != 8)
-			        _flags |= FileFlags.BitsVaries;
-	        }
+            if (header[7] == '-')
+            {
+                _flags |= FileFlags.File64;
+                if (IntPtr.Size != 8)
+                    _flags |= FileFlags.BitsVaries;
+            }
             else if (IntPtr.Size == 8)
             {
                 _flags |= FileFlags.BitsVaries;
@@ -500,10 +500,10 @@ namespace BulletSharp
             }
         }
 
-		public void PreSwap()
-		{
+        public void PreSwap()
+        {
             throw new NotImplementedException();
-		}
+        }
 
         protected byte[] ReadStruct(BinaryReader head, ChunkInd dataChunk)
         {
@@ -574,8 +574,8 @@ namespace BulletSharp
             return dataAlloc;
         }
 
-		public void ResolvePointers(FileVerboseMode verboseMode)
-		{
+        public void ResolvePointers(FileVerboseMode verboseMode)
+        {
             Dna fileDna = (_fileDna != null) ? _fileDna : _memoryDna;
 
             if (true) // && ((_flags & FileFlags.BitsVaries | FileFlags.VersionVaries) != 0))
@@ -617,7 +617,7 @@ namespace BulletSharp
             {
                 Console.WriteLine("</bullet_physics>");
             }
-		}
+        }
 
         protected void ResolvePointersChunk(ChunkInd dataChunk, FileVerboseMode verboseMode)
         {
@@ -771,7 +771,7 @@ namespace BulletSharp
                                 }
                                 else
                                 {
-							        double[] dbArray = new double[arrayLen];
+                                    double[] dbArray = new double[arrayLen];
                                     GetElement(reader, arrayLen, element.Type, dbArray);
                                     for (int i = 0; i < recursion; i++)
                                     {
@@ -832,7 +832,7 @@ namespace BulletSharp
                         throw new NotImplementedException();
                     }
                     longValue = longValue >> 3;
-                    int intValue = (int) longValue;
+                    int intValue = (int)longValue;
                     strcData.Write(intValue);
                 }
             }
@@ -857,15 +857,15 @@ namespace BulletSharp
             }
         }
 
-		public void UpdateOldPointers()
-		{
+        public void UpdateOldPointers()
+        {
             for (int i = 0; i < _chunks.Count; i++)
             {
                 //_chunks[i].OldPtr
                 byte[] data = FindLibPointer(_chunks[i].OldPtr);
                 data.ToString();
             }
-		}
+        }
         /*
 		public int Write(char fileName, bool fixupPointers)
 		{
@@ -898,18 +898,18 @@ namespace BulletSharp
 		}
         */
         public FileFlags Flags
-		{
+        {
             get { return _flags; }
-		}
-        
-		public Dictionary<long, byte[]> LibPointers
-		{
+        }
+
+        public Dictionary<long, byte[]> LibPointers
+        {
             get { return _libPointers; }
-		}
-        
-		public int Version
-		{
+        }
+
+        public int Version
+        {
             get { return _version; }
-		}
-	}
+        }
+    }
 }

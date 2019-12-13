@@ -1,6 +1,6 @@
-﻿using System;
+﻿using BulletSharp.Math;
+using System;
 using System.IO;
-using BulletSharp.Math;
 
 namespace BulletSharp
 {

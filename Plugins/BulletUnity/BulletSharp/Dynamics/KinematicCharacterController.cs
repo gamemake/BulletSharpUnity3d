@@ -710,7 +710,7 @@ namespace BulletSharp
         protected int m_upAxis;
         protected bool m_useWalkDirection;
         protected float m_velocityTimeInterval;
-        
+
         protected bool m_interpolateUp;
         protected bool full_drop;
         protected bool bounce_fix;

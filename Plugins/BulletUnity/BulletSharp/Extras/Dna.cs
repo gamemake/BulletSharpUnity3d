@@ -146,7 +146,7 @@ namespace BulletSharp
             {
                 Name = name;
                 IsPointer = name[0] == '*' || name[1] == '*';
-                
+
                 int bp = name.IndexOf('[') + 1;
                 if (bp == 0)
                 {
@@ -209,9 +209,9 @@ namespace BulletSharp
         }
 
         public int GetElementSize(ElementDecl element)
-		{
+        {
             return element.Name.ArraySizeNew * (element.Name.IsPointer ? _ptrLen : element.Type.Length);
-		}
+        }
 
         public string GetName(int i)
         {

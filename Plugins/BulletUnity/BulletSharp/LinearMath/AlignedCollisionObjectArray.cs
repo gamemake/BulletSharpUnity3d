@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security;
-using System.Diagnostics;
 
 namespace BulletSharp
 {
@@ -195,20 +195,20 @@ namespace BulletSharp
         public void CopyTo(CollisionObject[] array, int arrayIndex)
         {
             if (array == null)
-		        throw new ArgumentNullException("array");
+                throw new ArgumentNullException("array");
 
-	        if (arrayIndex < 0)
-		        throw new ArgumentOutOfRangeException("array");
+            if (arrayIndex < 0)
+                throw new ArgumentOutOfRangeException("array");
 
-	        int count = Count;
+            int count = Count;
             if (arrayIndex + count > array.Length)
-		        throw new ArgumentException("Array too small.", "array");
+                throw new ArgumentException("Array too small.", "array");
 
-	        int i;
+            int i;
             for (i = 0; i < count; i++)
-	        {
+            {
                 array[arrayIndex + i] = this[i];
-	        }
+            }
         }
 
         public int Count
@@ -284,7 +284,7 @@ namespace BulletSharp
             else
             {
                 item.BroadphaseHandle = new BroadphaseProxy(broadphaseHandle);
-	        }
+            }
         }
 
         public IEnumerator<CollisionObject> GetEnumerator()

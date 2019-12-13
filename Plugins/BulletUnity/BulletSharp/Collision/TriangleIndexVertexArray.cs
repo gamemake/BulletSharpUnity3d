@@ -1,28 +1,28 @@
+using BulletSharp.Math;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security;
-using BulletSharp.Math;
 
 namespace BulletSharp
 {
-	public class IndexedMesh : IDisposable
-	{
-		internal IntPtr _native;
-		bool _preventDelete;
+    public class IndexedMesh : IDisposable
+    {
+        internal IntPtr _native;
+        bool _preventDelete;
         private bool _ownsData;
 
-		internal IndexedMesh(IntPtr native, bool preventDelete)
-		{
-			_native = native;
-			_preventDelete = preventDelete;
-		}
+        internal IndexedMesh(IntPtr native, bool preventDelete)
+        {
+            _native = native;
+            _preventDelete = preventDelete;
+        }
 
-		public IndexedMesh()
-		{
-			_native = btIndexedMesh_new();
-		}
+        public IndexedMesh()
+        {
+            _native = btIndexedMesh_new();
+        }
 
         public void Allocate(int numTriangles, int numVertices, int triangleIndexStride = sizeof(int) * 3, int vertexStride = sizeof(float) * 3)
         {
@@ -81,137 +81,137 @@ namespace BulletSharp
         }
 
         public PhyScalarType IndexType
-		{
-			get { return btIndexedMesh_getIndexType(_native); }
-			set { btIndexedMesh_setIndexType(_native, value); }
-		}
+        {
+            get { return btIndexedMesh_getIndexType(_native); }
+            set { btIndexedMesh_setIndexType(_native, value); }
+        }
 
-		public int NumTriangles
-		{
-			get { return btIndexedMesh_getNumTriangles(_native); }
-			set { btIndexedMesh_setNumTriangles(_native, value); }
-		}
+        public int NumTriangles
+        {
+            get { return btIndexedMesh_getNumTriangles(_native); }
+            set { btIndexedMesh_setNumTriangles(_native, value); }
+        }
 
-		public int NumVertices
-		{
-			get { return btIndexedMesh_getNumVertices(_native); }
-			set { btIndexedMesh_setNumVertices(_native, value); }
-		}
+        public int NumVertices
+        {
+            get { return btIndexedMesh_getNumVertices(_native); }
+            set { btIndexedMesh_setNumVertices(_native, value); }
+        }
 
-		public IntPtr TriangleIndexBase
-		{
-			get { return btIndexedMesh_getTriangleIndexBase(_native); }
-			set { btIndexedMesh_setTriangleIndexBase(_native, value); }
-		}
+        public IntPtr TriangleIndexBase
+        {
+            get { return btIndexedMesh_getTriangleIndexBase(_native); }
+            set { btIndexedMesh_setTriangleIndexBase(_native, value); }
+        }
 
-		public int TriangleIndexStride
-		{
-			get { return btIndexedMesh_getTriangleIndexStride(_native); }
-			set { btIndexedMesh_setTriangleIndexStride(_native, value); }
-		}
+        public int TriangleIndexStride
+        {
+            get { return btIndexedMesh_getTriangleIndexStride(_native); }
+            set { btIndexedMesh_setTriangleIndexStride(_native, value); }
+        }
 
         public IntPtr VertexBase
-		{
-			get { return btIndexedMesh_getVertexBase(_native); }
-			set { btIndexedMesh_setVertexBase(_native, value); }
-		}
+        {
+            get { return btIndexedMesh_getVertexBase(_native); }
+            set { btIndexedMesh_setVertexBase(_native, value); }
+        }
 
-		public int VertexStride
-		{
-			get { return btIndexedMesh_getVertexStride(_native); }
-			set { btIndexedMesh_setVertexStride(_native, value); }
-		}
+        public int VertexStride
+        {
+            get { return btIndexedMesh_getVertexStride(_native); }
+            set { btIndexedMesh_setVertexStride(_native, value); }
+        }
 
         public PhyScalarType VertexType
-		{
-			get { return btIndexedMesh_getVertexType(_native); }
-			set { btIndexedMesh_setVertexType(_native, value); }
-		}
+        {
+            get { return btIndexedMesh_getVertexType(_native); }
+            set { btIndexedMesh_setVertexType(_native, value); }
+        }
 
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-		protected virtual void Dispose(bool disposing)
-		{
-			if (_native != IntPtr.Zero)
-			{
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_native != IntPtr.Zero)
+            {
                 Free();
-				if (!_preventDelete)
-				{
-					btIndexedMesh_delete(_native);
-				}
-				_native = IntPtr.Zero;
-			}
-		}
+                if (!_preventDelete)
+                {
+                    btIndexedMesh_delete(_native);
+                }
+                _native = IntPtr.Zero;
+            }
+        }
 
-		~IndexedMesh()
-		{
-			Dispose(false);
-		}
+        ~IndexedMesh()
+        {
+            Dispose(false);
+        }
 
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern IntPtr btIndexedMesh_new();
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern IntPtr btIndexedMesh_new();
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
         static extern PhyScalarType btIndexedMesh_getIndexType(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern int btIndexedMesh_getNumTriangles(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern int btIndexedMesh_getNumVertices(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern IntPtr btIndexedMesh_getTriangleIndexBase(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern int btIndexedMesh_getTriangleIndexStride(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern IntPtr btIndexedMesh_getVertexBase(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern int btIndexedMesh_getVertexStride(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern int btIndexedMesh_getNumTriangles(IntPtr obj);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern int btIndexedMesh_getNumVertices(IntPtr obj);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern IntPtr btIndexedMesh_getTriangleIndexBase(IntPtr obj);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern int btIndexedMesh_getTriangleIndexStride(IntPtr obj);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern IntPtr btIndexedMesh_getVertexBase(IntPtr obj);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern int btIndexedMesh_getVertexStride(IntPtr obj);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
         static extern PhyScalarType btIndexedMesh_getVertexType(IntPtr obj);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
         static extern void btIndexedMesh_setIndexType(IntPtr obj, PhyScalarType value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btIndexedMesh_setNumTriangles(IntPtr obj, int value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btIndexedMesh_setNumVertices(IntPtr obj, int value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btIndexedMesh_setTriangleIndexBase(IntPtr obj, IntPtr value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btIndexedMesh_setTriangleIndexStride(IntPtr obj, int value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btIndexedMesh_setVertexBase(IntPtr obj, IntPtr value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btIndexedMesh_setVertexStride(IntPtr obj, int value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btIndexedMesh_setNumTriangles(IntPtr obj, int value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btIndexedMesh_setNumVertices(IntPtr obj, int value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btIndexedMesh_setTriangleIndexBase(IntPtr obj, IntPtr value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btIndexedMesh_setTriangleIndexStride(IntPtr obj, int value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btIndexedMesh_setVertexBase(IntPtr obj, IntPtr value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btIndexedMesh_setVertexStride(IntPtr obj, int value);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
         static extern void btIndexedMesh_setVertexType(IntPtr obj, PhyScalarType value);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btIndexedMesh_delete(IntPtr obj);
-	}
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btIndexedMesh_delete(IntPtr obj);
+    }
 
-	public class TriangleIndexVertexArray : StridingMeshInterface
-	{
+    public class TriangleIndexVertexArray : StridingMeshInterface
+    {
         private List<IndexedMesh> _meshes = new List<IndexedMesh>();
         private IndexedMesh _initialMesh;
         private AlignedIndexedMeshArray _indexedMeshArray;
 
-		internal TriangleIndexVertexArray(IntPtr native)
-			: base(native)
-		{
-		}
+        internal TriangleIndexVertexArray(IntPtr native)
+            : base(native)
+        {
+        }
 
-		public TriangleIndexVertexArray()
-			: base(btTriangleIndexVertexArray_new())
-		{
-		}
+        public TriangleIndexVertexArray()
+            : base(btTriangleIndexVertexArray_new())
+        {
+        }
 
         public TriangleIndexVertexArray(ICollection<int> triangles, ICollection<float> vertices)
             : base(btTriangleIndexVertexArray_new())
         {
             _initialMesh = new IndexedMesh();
             _initialMesh.Allocate(triangles.Count / 3, vertices.Count / 3);
-            
+
             int[] triangleArray = triangles as int[];
             if (triangleArray == null)
             {
@@ -219,7 +219,7 @@ namespace BulletSharp
                 triangles.CopyTo(triangleArray, 0);
             }
             Marshal.Copy(triangleArray, 0, _initialMesh.TriangleIndexBase, triangles.Count);
-            
+
             float[] vertexArray = vertices as float[];
             if (vertexArray == null)
             {
@@ -227,7 +227,7 @@ namespace BulletSharp
                 vertices.CopyTo(vertexArray, 0);
             }
             Marshal.Copy(vertexArray, 0, _initialMesh.VertexBase, vertices.Count);
-            
+
             AddIndexedMesh(_initialMesh);
         }
 
@@ -257,24 +257,24 @@ namespace BulletSharp
         }
 
         public TriangleIndexVertexArray(int numTriangles, IntPtr triangleIndexBase, int triangleIndexStride, int numVertices, IntPtr vertexBase, int vertexStride)
-			: base(btTriangleIndexVertexArray_new2(numTriangles, triangleIndexBase, triangleIndexStride, numVertices, vertexBase, vertexStride))
-		{
-		}
+            : base(btTriangleIndexVertexArray_new2(numTriangles, triangleIndexBase, triangleIndexStride, numVertices, vertexBase, vertexStride))
+        {
+        }
 
-		public void AddIndexedMesh(IndexedMesh mesh)
-		{
+        public void AddIndexedMesh(IndexedMesh mesh)
+        {
             _meshes.Add(mesh);
-			btTriangleIndexVertexArray_addIndexedMesh(_native, mesh._native);
-		}
+            btTriangleIndexVertexArray_addIndexedMesh(_native, mesh._native);
+        }
 
         public void AddIndexedMesh(IndexedMesh mesh, PhyScalarType indexType)
-		{
+        {
             _meshes.Add(mesh);
-			btTriangleIndexVertexArray_addIndexedMesh2(_native, mesh._native, indexType);
-		}
+            btTriangleIndexVertexArray_addIndexedMesh2(_native, mesh._native, indexType);
+        }
 
-		public AlignedIndexedMeshArray IndexedMeshArray
-		{
+        public AlignedIndexedMeshArray IndexedMeshArray
+        {
             get
             {
                 // TODO: link _indexedMeshArray to _meshes
@@ -284,7 +284,7 @@ namespace BulletSharp
                 }
                 return _indexedMeshArray;
             }
-		}
+        }
 
         protected override void Dispose(bool disposing)
         {
@@ -299,15 +299,15 @@ namespace BulletSharp
             base.Dispose(disposing);
         }
 
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern IntPtr btTriangleIndexVertexArray_new();
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern IntPtr btTriangleIndexVertexArray_new2(int numTriangles, IntPtr triangleIndexBase, int triangleIndexStride, int numVertices, IntPtr vertexBase, int vertexStride);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern void btTriangleIndexVertexArray_addIndexedMesh(IntPtr obj, IntPtr mesh);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern IntPtr btTriangleIndexVertexArray_new();
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern IntPtr btTriangleIndexVertexArray_new2(int numTriangles, IntPtr triangleIndexBase, int triangleIndexStride, int numVertices, IntPtr vertexBase, int vertexStride);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern void btTriangleIndexVertexArray_addIndexedMesh(IntPtr obj, IntPtr mesh);
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
         static extern void btTriangleIndexVertexArray_addIndexedMesh2(IntPtr obj, IntPtr mesh, PhyScalarType indexType);
-		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
-		static extern IntPtr btTriangleIndexVertexArray_getIndexedMeshArray(IntPtr obj);
-	}
+        [DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+        static extern IntPtr btTriangleIndexVertexArray_getIndexedMeshArray(IntPtr obj);
+    }
 }

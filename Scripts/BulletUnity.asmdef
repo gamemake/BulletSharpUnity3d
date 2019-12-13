@@ -1,0 +1,8 @@
+{
+    "name": "BulletUnity",
+    "references": ["BulletSharp"],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true
+}

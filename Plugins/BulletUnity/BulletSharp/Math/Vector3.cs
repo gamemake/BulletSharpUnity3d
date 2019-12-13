@@ -23,7 +23,6 @@
 using System;
 using System.Globalization;
 using System.Runtime.InteropServices;
-using System.ComponentModel;
 
 namespace BulletSharp.Math
 {

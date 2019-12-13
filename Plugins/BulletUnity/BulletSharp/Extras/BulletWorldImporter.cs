@@ -5,20 +5,20 @@ using System.Runtime.InteropServices;
 
 namespace BulletSharp
 {
-	public class BulletWorldImporter : WorldImporter
-	{
-		public BulletWorldImporter(DynamicsWorld world)
-			: base(world)
-		{
-		}
+    public class BulletWorldImporter : WorldImporter
+    {
+        public BulletWorldImporter(DynamicsWorld world)
+            : base(world)
+        {
+        }
 
-		public BulletWorldImporter()
-			: base(null)
-		{
-		}
-        
-		public bool ConvertAllObjects(BulletFile file)
-		{
+        public BulletWorldImporter()
+            : base(null)
+        {
+        }
+
+        public bool ConvertAllObjects(BulletFile file)
+        {
             _shapeMap.Clear();
             _bodyMap.Clear();
 
@@ -251,41 +251,41 @@ namespace BulletSharp
             }
 
             return true;
-		}
+        }
 
         public bool LoadFile(string fileName, string preSwapFilenameOut)
-		{
-			BulletFile bulletFile = new BulletFile(fileName);
+        {
+            BulletFile bulletFile = new BulletFile(fileName);
             bool result = LoadFileFromMemory(bulletFile);
 
             //now you could save the file in 'native' format using
             //bulletFile.WriteFile("native.bullet");
             if (result)
             {
-                    if (preSwapFilenameOut != null)
-                    {
-                        bulletFile.PreSwap();
-                        //bulletFile.WriteFile(preSwapFilenameOut);
-                    }
-                
+                if (preSwapFilenameOut != null)
+                {
+                    bulletFile.PreSwap();
+                    //bulletFile.WriteFile(preSwapFilenameOut);
+                }
+
             }
 
             return result;
-		}
+        }
 
         public bool LoadFile(string fileName)
         {
             return LoadFile(fileName, null);
         }
-        
-		public bool LoadFileFromMemory(byte[] memoryBuffer, int len)
-		{
+
+        public bool LoadFileFromMemory(byte[] memoryBuffer, int len)
+        {
             BulletFile bulletFile = new BulletFile(memoryBuffer, len);
             return LoadFileFromMemory(bulletFile);
-		}
-        
+        }
+
         public bool LoadFileFromMemory(BulletFile bulletFile)
-		{
+        {
             if ((bulletFile.Flags & FileFlags.OK) != FileFlags.OK)
             {
                 return false;
@@ -299,6 +299,6 @@ namespace BulletSharp
             }
 
             return ConvertAllObjects(bulletFile);
-		}
-	}
+        }
+    }
 }
