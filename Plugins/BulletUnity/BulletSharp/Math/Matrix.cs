@@ -316,6 +316,7 @@ namespace BulletSharp.Math
             set { M41 = value.X; M42 = value.Y; M43 = value.Z; }
         }
 
+
         public BulletSharp.Math.Quaternion Orientation
         {
             get
@@ -326,7 +327,7 @@ namespace BulletSharp.Math
 
                 if (trace > 0.0f)
                 {
-                    float s = UnityEngine.Mathf.Sqrt(trace + (1.0f));
+                    float s = (float)System.Math.Sqrt(trace + (1.0f));
                     temp[3] = (s * (0.5f));
                     s = (0.5f) / s;
 
@@ -336,26 +337,26 @@ namespace BulletSharp.Math
                 }
                 else
                 {
-                    int i =  M11 < M22 ?
+                    int i = M11 < M22 ?
                             (M22 < M33 ? 2 : 1) :
                             (M11 < M33 ? 2 : 0);
                     int j = (i + 1) % 3;
                     int k = (i + 2) % 3;
 
-                    float s = UnityEngine.Mathf.Sqrt(this[i,i] - this[j,j] - this[k,k] + 1.0f);
+                    float s = (float)System.Math.Sqrt(this[i, i] - this[j, j] - this[k, k] + 1.0f);
                     temp[i] = s * 0.5f;
                     s = 0.5f / s;
 
-                    temp[3] = (this[k,j] - this[j,k]) * s;
-                    temp[j] = (this[j,i] + this[i,j]) * s;
-                    temp[k] = (this[k,i] + this[i,k]) * s;
+                    temp[3] = (this[k, j] - this[j, k]) * s;
+                    temp[j] = (this[j, i] + this[i, j]) * s;
+                    temp[k] = (this[k, i] + this[i, k]) * s;
                 }
                 return new BulletSharp.Math.Quaternion(temp[0], temp[1], temp[2], temp[3]);
             }
             set
             {
                 float d = value.X * value.X + value.Y * value.Y + value.Z * value.Z + value.W * value.W;
-                UnityEngine.Debug.Assert(d != 0.0f);
+                // UnityEngine.Debug.Assert(d != 0.0f);
                 float s = 2.0f / d;
                 float xs = value.X * s, ys = value.Y * s, zs = value.Z * s;
                 float wx = value.W * xs, wy = value.W * ys, wz = value.W * zs;
@@ -363,8 +364,8 @@ namespace BulletSharp.Math
                 float yy = value.Y * ys, yz = value.Y * zs, zz = value.Z * zs;
 
                 M11 = 1.0f - (yy + zz); M12 = xy - wz; M13 = xz + wy;
-                M21 = xy + wz;   M22 = 1.0f - (xx + zz); M23 = yz - wx;
-                M31 = xz - wy;   M32 = yz + wx; M33 = 1.0f - (xx + yy);
+                M21 = xy + wz; M22 = 1.0f - (xx + zz); M23 = yz - wx;
+                M31 = xz - wy; M32 = yz + wx; M33 = 1.0f - (xx + yy);
             }
         }
 
